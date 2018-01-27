@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <img src="images/demo/bird_logo.png" alt="Example Navbar 1" class="mr-2" height="30px">
       <a class="navbar-brand" href="index.php">สาขาวิชาเทคโนโลยีสารสนเทศ</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown-1" aria-controls="navbarNavDropdown-1" aria-expanded="false" aria-label="Toggle navigation">

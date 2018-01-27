@@ -69,7 +69,7 @@ $('#list_teacher').on('click','.graduationCap',function(){
     if(status == "checked"){
       $('#hisEdu').append("<li>"+degree+" , "+faculty+" , "+university+" , "+year+"</li>");
     }
-    
+
   });
 
   var rootRefExpert = usersRef.child(id).child('education').child('expertise');
@@ -229,9 +229,14 @@ $('#list_admin').on('click','.info',function(){
   rootRefEducation.on("child_added",snap => {
     var degree = snap.child("degree").val();
     var faculty = snap.child("faculty").val();
+    var status = snap.child("status").val();
     var university = snap.child("university").val();
     var year = snap.child("year").val();
+
+    if(status == "checked"){
     $('#hisEdu').append("<li>"+degree+" , "+faculty+" , "+university+" , "+year+"</li>");
+  }
+
   });
 
   var rootRefExpert = usersRef.child(id).child('education').child('expertise');

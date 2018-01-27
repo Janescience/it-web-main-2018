@@ -11,7 +11,7 @@
     <div class="container mt-5">
     <div class="row">
       <div class="section-title col-lg-12 col-md-10 mt-5 ml-auto mr-auto">
-        <h1 class="mb-4"> 🔥 คณาจารย์</h1><br>
+        <h1 class="mb-4">คณาจารย์</h1><br>
       </div>
     </div>
 <div class="row" id="list_teacher">
@@ -20,7 +20,7 @@
 
 <div class="row">
   <div class="section-title col-lg-12 col-md-10 mt-5 ml-auto mr-auto">
-    <h1 class="mb-4"> 🔥 เจ้าหน้าที่บริหารงานทั่วไป</h1><br>
+    <h1 class="mb-4">เจ้าหน้าที่บริหารงานทั่วไป</h1><br>
   </div>
 </div>
 
@@ -29,7 +29,7 @@
 
 <div class="row">
   <div class="section-title col-lg-12 col-md-10 mt-5 ml-auto mr-auto">
-    <h1 class="mb-4"> 🔥 ผู้ช่วยสอนและวิจัย</h1><br>
+    <h1 class="mb-4">ผู้ช่วยสอนและวิจัย</h1><br>
   </div>
 </div>
 
