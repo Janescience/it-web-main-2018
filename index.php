@@ -12,13 +12,13 @@
 <div class="loader"><div class="page-loader"></div></div>
 
 <!-- Floating Shards -->
-<img src="images/demo/bird.png" alt="Shard" class="shard">
+<img src="images/demo/bird-log.png" alt="Shard" class="shard">
 
 <!-- Welcome Section -->
 <div class="welcome d-flex justify-content-center flex-column">
     <div class="inner-wrapper mt-auto mb-auto">
         <h2 class="slide-in">เทคโนโลยีสารสนเทศ</h2>
-        <h6 class="slide-in">มหาวิทยาลัยเทคโนโลยีสุรนารี</h6>
+        <h5 class="slide-in">มหาวิทยาลัยเทคโนโลยีสุรนารี</h5>
     </div>
 </div>
 
@@ -110,7 +110,7 @@
     <div class="example col-md-12 ml-auto mr-auto">
 
       <div class="section-title col-lg- col-md-10 ml-auto mr-auto">
-        <h3 class="mb-4 text-center"> 🎓 ระดับการศึกษา</h3><br>
+        <h3 class="mb-4 text-center"><i class="fa fa-graduation-cap"></i> ระดับการศึกษา</h3><br>
       </div>
 
       <div class="row">
@@ -161,7 +161,7 @@
 
 <!-- Course -->
   <div class="our-services section py-4">
-    <h3 class="section-title text-center my-5"> 📘 หลักสูตร</h3>
+    <h3 class="section-title text-center my-5"><i class="fa fa-book"></i> หลักสูตร</h3>
 
         <div class="features py-4 mb-4">
           <div class="container">
@@ -214,7 +214,7 @@
   <div id="typography" class="container mb-5">
 
     <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
-      <h3 class="mb-4 text-center">📰 ข่าวสาร</h3><br>
+      <h3 class="mb-4 text-center"><i class="fa fa-file-text-o"></i> ข่าวสาร</h3><br>
    </div>
 
     <div class="row">
