@@ -73,4 +73,24 @@ var dbPhilosophyMasterAndDoctor = firebase.database().ref('website/about/master'
       $('#purposeMasterAndDoctor').text(snap.val());
     });
 
+var dbInfoBachelor = firebase.database().ref('website/index/info/infobachelor');
+dbInfoBachelor.on('child_added',snap=>{
+  var photo = snap.child('photo').val();
+  var topic = snap.child('topic').val();
+  var url = snap.child('url').val();
+
+  $('#infoBachelor').append("<tr><td><img style='"+'border-radius:10px; width:20vh;'+"' src='"+photo+"'></td><td><h6>"+topic+"</h6>"+
+                            "<a href='"+url+"' class='"+'btn btn-pill btn-primary btn-sm'+"'><i class='"+'fa fa-chevron-right mr-1'+"'></i> รายละเอียด</a></td></tr>");
+});
+
+var dbInfoGraduate = firebase.database().ref('website/index/info/infograduate');
+dbInfoGraduate.on('child_added',snap=>{
+  var photo = snap.child('photo').val();
+  var topic = snap.child('topic').val();
+  var url = snap.child('url').val();
+
+  $('#infoGraduate').append("<tr><td><img style='"+'border-radius:10px; width:20vh;'+"' src='"+photo+"'></td><td><h6>"+topic+"</h6>"+
+                            "<a href='"+url+"' class='"+'btn btn-pill btn-primary btn-sm'+"'><i class='"+'fa fa-chevron-right mr-1'+"'></i> รายละเอียด</a></td></tr>");
+});
+
 });

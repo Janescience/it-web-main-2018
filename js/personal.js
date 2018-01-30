@@ -42,12 +42,27 @@ rootRefUser.on("child_added",snap => {
 
   $('#list_teacher').append("<div class='"+'col-lg-4 text-center'+"'><div class='"+'hovereffect'+"'><img src='"+image+"' class='"+'avatar'+"' style='"+office+"'>"+
                             "<div class='"+'overlay'+"'><div class='"+'rotate'+"'><p id='"+snap.key+"' class='"+'group1'+"'><a class='"+'googleMap'+"' href='"+'javascript:void(0)'+"'><i class='"+'fa fa-map-marker'+"'></i></a><a class='"+'graduationCap'+"' href='"+'javascript:void(0)'+"'><i class='"+'fa fa-graduation-cap'+"'></i></a></p>"+
-                            "<p class='"+'group2'+"' id='"+snap.key+"'><a href='"+'#'+"'><i class='"+'fa fa-user'+"'></i></a><a class='"+'officeHour'+"'href='"+'javascript:void(0)'+"'><i class='"+'fa fa-calendar'+"'></i></a></p></div></div></div>"+
+                            "<p class='"+'group2'+"' id='"+snap.key+"'><a class='"+'subject'+"' href='"+'javascript:void(0)'+"'><i class='"+'fa fa-pencil'+"'></i></a><a class='"+'officeHour'+"'href='"+'javascript:void(0)'+"'><i class='"+'fa fa-calendar'+"'></i></a></p></div></div></div>"+
                             "<h6><span class='"+'text-muted'+"'> - "+status+" - </span></h6><br><h4><span>"+name+"</span></h4>"+
                             "<p><i class='"+'fa fa-envelope-o'+"' aria-hidden='"+'true'+"'></i> "+email+"<br>"+
                             "<i class='"+'fa fa-phone'+"' aria-hidden='"+'true'+"'></i> "+telephone+"</p></div>");
   }
     $.LoadingOverlay("hide");
+});
+
+$('#list_teacher').on('click','.subject',function(){
+  var id = $(this).closest('p').attr('id');
+  $('#list_subject').empty();
+  var rootRefSubject = usersRef.child(id).child('subject');
+  rootRefSubject.on("child_added",snap => {
+    var subject = snap.child("subject").val();
+    var code = snap.child("code").val();
+    var credit = snap.child("credit").val();
+
+      $('#list_subject').append("<tr><td>"+subject+"</td><td>"+code+"</td><td>"+credit+"</td></tr>");
+
+  });
+  $('#subjectModal').modal('show');
 });
 
 $('#list_teacher').on('click','.graduationCap',function(){
@@ -57,6 +72,7 @@ $('#list_teacher').on('click','.graduationCap',function(){
   $('#expert').empty();
   $('#hisWork').empty();
   $('#exp').empty();
+  $('#working').empty();
 
   var rootRefEducation = usersRef.child(id).child('education').child('his_education');
   rootRefEducation.on("child_added",snap => {
@@ -75,7 +91,10 @@ $('#list_teacher').on('click','.graduationCap',function(){
   var rootRefExpert = usersRef.child(id).child('education').child('expertise');
   rootRefExpert.on("child_added",snap => {
     var detail = snap.child("detail").val();
+    var status = snap.child("status").val();
+  if(status == "checked"){
     $('#expert').append("<li>"+detail+"</li>");
+  }
   });
 
   var rootRefWork = usersRef.child(id).child('work').child('his_work');
@@ -84,7 +103,10 @@ $('#list_teacher').on('click','.graduationCap',function(){
     var finish_time = snap.child("finish_time").val();
     var start_time = snap.child("start_time").val();
     var work = snap.child("work").val();
+    var status = snap.child("status").val();
+      if(status == "checked"){
     $('#hisWork').append("<li>"+start_time+" - "+finish_time+" , "+work+" , "+address+"</li>");
+  }
   });
 
   var rootRefExp = usersRef.child(id).child('work').child('experience');
@@ -93,7 +115,54 @@ $('#list_teacher').on('click','.graduationCap',function(){
     var exp = snap.child("exp").val();
     var finish_time = snap.child("finish_time").val();
     var start_time = snap.child("start_time").val();
+    var status = snap.child("status").val();
+    if(status == "checked"){
     $('#exp').append("<li>"+exp+" , "+detail+" , "+start_time+" - "+finish_time+"</li>");
+  }
+  });
+
+  var rootRefAcademicWork = usersRef.child(id).child('academic_work').child('portfolio');
+  rootRefAcademicWork.on("child_added",snap => {
+    var name_award = snap.child("name_award").val();
+    var name_work = snap.child("name_work").val();
+    var detail = snap.child("detail").val();
+    var department = snap.child("department").val();
+    var date = snap.child("date").val();
+    var code_research = snap.child("code_research").val();
+    var country = snap.child("country").val();
+    var date_finish = snap.child("date_finish").val();
+    var date_start = snap.child("date_start").val();
+    var location = snap.child("location").val();
+    var name = snap.child("name").val();
+    var name_eng = snap.child("name_eng").val();
+    var name_thai = snap.child("name_thai").val();
+    var type_article = snap.child("type_article").val();
+    var year = snap.child("year").val();
+    var article = snap.child("article").val();
+    var no = snap.child("no").val();
+    var status_author = snap.child("status_author").val();
+    var type_journal = snap.child("type_journal").val();
+    var status = snap.child("status").val();
+    var type = snap.child("type").val();
+
+    if(status == "checked"){
+      if(type == "inter_work"){
+        $('#working').append("<li> ผลงานระดับนานาชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+      }else if(type == "nation_work"){
+        $('#working').append("<li> ผลงานระดับชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+      }else if(type == "nation_journal"){
+        $('#working').append("<li> วารสารระดับชาติ - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+      }else if(type == "inter_journal_not_database"){
+        $('#working').append("<li> วารสารระดับนานาชาติที่ไม่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+      }else if(type == "inter_journal_in_database"){
+        $('#working').append("<li> วารสารระดับนานาชาติที่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+      }else if(type == "nation_conference"){
+        $('#working').append("<li> การประชุมระดับชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+      }else if(type == "inter_conference"){
+        $('#working').append("<li> การประชุมระดับนานาชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+      }
+
+  }
   });
 
 
@@ -242,7 +311,10 @@ $('#list_admin').on('click','.info',function(){
   var rootRefExpert = usersRef.child(id).child('education').child('expertise');
   rootRefExpert.on("child_added",snap => {
     var detail = snap.child("detail").val();
+    var status = snap.child("status").val();
+      if(status == "checked"){
     $('#expert').append("<li>"+detail+"</li>");
+  }
   });
 
   var rootRefWork = usersRef.child(id).child('work').child('his_work');
@@ -251,7 +323,10 @@ $('#list_admin').on('click','.info',function(){
     var finish_time = snap.child("finish_time").val();
     var start_time = snap.child("start_time").val();
     var work = snap.child("work").val();
+    var status = snap.child("status").val();
+  if(status == "checked"){
     $('#hisWork').append("<li>"+start_time+" - "+finish_time+" , "+work+" , "+address+"</li>");
+  }
   });
 
   var rootRefExp = usersRef.child(id).child('work').child('experience');
@@ -260,8 +335,56 @@ $('#list_admin').on('click','.info',function(){
     var exp = snap.child("exp").val();
     var finish_time = snap.child("finish_time").val();
     var start_time = snap.child("start_time").val();
+    var status = snap.child("status").val();
+  if(status == "checked"){
     $('#exp').append("<li>"+exp+" , "+detail+" , "+start_time+" - "+finish_time+"</li>");
+  }
   });
+
+
+    var rootRefAcademicWork = usersRef.child(id).child('academic_work').child('portfolio');
+    rootRefAcademicWork.on("child_added",snap => {
+      var name_award = snap.child("name_award").val();
+      var name_work = snap.child("name_work").val();
+      var detail = snap.child("detail").val();
+      var department = snap.child("department").val();
+      var date = snap.child("date").val();
+      var code_research = snap.child("code_research").val();
+      var country = snap.child("country").val();
+      var date_finish = snap.child("date_finish").val();
+      var date_start = snap.child("date_start").val();
+      var location = snap.child("location").val();
+      var name = snap.child("name").val();
+      var name_eng = snap.child("name_eng").val();
+      var name_thai = snap.child("name_thai").val();
+      var type_article = snap.child("type_article").val();
+      var year = snap.child("year").val();
+      var article = snap.child("article").val();
+      var no = snap.child("no").val();
+      var status_author = snap.child("status_author").val();
+      var type_journal = snap.child("type_journal").val();
+      var status = snap.child("status").val();
+      var type = snap.child("type").val();
+
+      if(status == "checked"){
+        if(type == "inter_work"){
+          $('#working').append("<li> ผลงานระดับนานาชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+        }else if(type == "nation_work"){
+          $('#working').append("<li> ผลงานระดับชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+        }else if(type == "nation_journal"){
+          $('#working').append("<li> วารสารระดับชาติ - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        }else if(type == "inter_journal_not_database"){
+          $('#working').append("<li> วารสารระดับนานาชาติที่ไม่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        }else if(type == "inter_journal_in_database"){
+          $('#working').append("<li> วารสารระดับนานาชาติที่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        }else if(type == "nation_conference"){
+          $('#working').append("<li> การประชุมระดับชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+        }else if(type == "inter_conference"){
+          $('#working').append("<li> การประชุมระดับนานาชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+        }
+
+    }
+    });
 
 
   $('#hisandworkModal').modal('show');
@@ -312,13 +435,19 @@ $('#list_ta').on('click','.info',function(){
     var faculty = snap.child("faculty").val();
     var university = snap.child("university").val();
     var year = snap.child("year").val();
+    var status = snap.child("status").val();
+    if(status == "checked"){
     $('#hisEdu').append("<li>"+degree+" , "+faculty+" , "+university+" , "+year+"</li>");
+  }
   });
 
   var rootRefExpert = usersRef.child(id).child('education').child('expertise');
   rootRefExpert.on("child_added",snap => {
     var detail = snap.child("detail").val();
+    var status = snap.child("status").val();
+    if(status == "checked"){
     $('#expert').append("<li>"+detail+"</li>");
+  }
   });
 
   var rootRefWork = usersRef.child(id).child('work').child('his_work');
@@ -327,7 +456,11 @@ $('#list_ta').on('click','.info',function(){
     var finish_time = snap.child("finish_time").val();
     var start_time = snap.child("start_time").val();
     var work = snap.child("work").val();
+    var status = snap.child("status").val();
+
+    if(status == "checked"){
     $('#hisWork').append("<li>"+start_time+" - "+finish_time+" , "+work+" , "+address+"</li>");
+  }
   });
 
   var rootRefExp = usersRef.child(id).child('work').child('experience');
@@ -336,8 +469,56 @@ $('#list_ta').on('click','.info',function(){
     var exp = snap.child("exp").val();
     var finish_time = snap.child("finish_time").val();
     var start_time = snap.child("start_time").val();
+    var status = snap.child("status").val();
+    if(status == "checked"){
     $('#exp').append("<li>"+exp+" , "+detail+" , "+start_time+" - "+finish_time+"</li>");
+  }
   });
+
+
+    var rootRefAcademicWork = usersRef.child(id).child('academic_work').child('portfolio');
+    rootRefAcademicWork.on("child_added",snap => {
+      var name_award = snap.child("name_award").val();
+      var name_work = snap.child("name_work").val();
+      var detail = snap.child("detail").val();
+      var department = snap.child("department").val();
+      var date = snap.child("date").val();
+      var code_research = snap.child("code_research").val();
+      var country = snap.child("country").val();
+      var date_finish = snap.child("date_finish").val();
+      var date_start = snap.child("date_start").val();
+      var location = snap.child("location").val();
+      var name = snap.child("name").val();
+      var name_eng = snap.child("name_eng").val();
+      var name_thai = snap.child("name_thai").val();
+      var type_article = snap.child("type_article").val();
+      var year = snap.child("year").val();
+      var article = snap.child("article").val();
+      var no = snap.child("no").val();
+      var status_author = snap.child("status_author").val();
+      var type_journal = snap.child("type_journal").val();
+      var status = snap.child("status").val();
+      var type = snap.child("type").val();
+
+      if(status == "checked"){
+        if(type == "inter_work"){
+          $('#working').append("<li> ผลงานระดับนานาชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+        }else if(type == "nation_work"){
+          $('#working').append("<li> ผลงานระดับชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+        }else if(type == "nation_journal"){
+          $('#working').append("<li> วารสารระดับชาติ - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        }else if(type == "inter_journal_not_database"){
+          $('#working').append("<li> วารสารระดับนานาชาติที่ไม่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        }else if(type == "inter_journal_in_database"){
+          $('#working').append("<li> วารสารระดับนานาชาติที่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        }else if(type == "nation_conference"){
+          $('#working').append("<li> การประชุมระดับชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+        }else if(type == "inter_conference"){
+          $('#working').append("<li> การประชุมระดับนานาชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+        }
+
+    }
+    });
 
 
   $('#hisandworkModal').modal('show');

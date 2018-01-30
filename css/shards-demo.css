@@ -10,7 +10,7 @@
   -moz-border-radius: 500px;
  }
 
- h1,h2,h3,h4,h5,h6,p,button,a,.btn,.navbar-brand{
+ h1,h2,h3,h4,h5,h6,p,button,a,.btn,.navbar-brand,li{
    font-family: 'Kanit', sans-serif;
  }
 
@@ -81,7 +81,7 @@
   font-size: 5.00rem;
   font-weight: 500;
   letter-spacing: -0.3125rem;
-  margin-top: 60vh;
+  margin-top: 80vh;
   margin-bottom: 20px;
   color: #4d4d4d;
 }
@@ -174,7 +174,7 @@
   left: 50%;
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
-  top: 170px;
+  top: 105px;
   z-index: 1;
   width: 280px;
   -webkit-animation: float 7s ease-in-out infinite;
