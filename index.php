@@ -12,7 +12,7 @@
 <div class="loader"><div class="page-loader"></div></div>
 
 <!-- Floating Shards -->
-<img src="images/demo/bird-log.png" alt="Shard" class="shard">
+<img src="images/demo/bird.png" alt="Shard" class="shard">
 
 <!-- Welcome Section -->
 <div class="welcome d-flex justify-content-center flex-column">
@@ -226,11 +226,8 @@
               <td colspan="2"  class="text-center"><h4 class="text-muted">ปริญญาตรี</h4></td>
             </tr>
          </thead>
-          <tbody id="">
-            <tr>
-              <td><img style="border-radius:10px; width:20vh; " src="images/demo/info2.jpg" ></td>
-              <td><h6>เกณฑ์การเลือกหลักสูตร IT(HP) 3/57</h6><button type="button" class="btn btn-pill btn-primary btn-sm"><i class="fa fa-chevron-right mr-1"></i> รายละเอียด</button></td>
-            </tr>
+          <tbody id="infoBachelor">
+
           </tbody>
        </table>
       </div>
@@ -242,11 +239,8 @@
               <td colspan="2" class="text-center text-muted"><h4  class="text-muted">บัณฑิตศึกษา</h4></td>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><img style="border-radius:10px; width:20vh; "src="images/demo/info1.jpg" ></td>
-              <td><h6>เกณฑ์การเลือกหลักสูตร IT รุ่นปี 55 1/58</h6><button type="button" class="btn btn-pill btn-primary btn-sm"><i class="fa fa-chevron-right mr-1"></i> รายละเอียด</button></td>
-            </tr>
+          <tbody id="infoGraduate">
+          
           </tbody>
         </table>
       </div>
