@@ -1,4 +1,4 @@
-<meta charset="utf-8">
+
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <link rel="icon" type="image/png" sizes="16x16" href="images/demo/bird_logo.png">
 <title>Information of Technology</title>
@@ -9,3 +9,5 @@
 <link rel="stylesheet" href="css/shards.min.css">
 <link rel="stylesheet" href="css/shards-demo.css?v=1.1.0">
 <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+<meta charset="utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>

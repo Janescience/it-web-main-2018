@@ -18,6 +18,101 @@ $(document).ready(function(){
 
   $.LoadingOverlay("show");
 
+
+$('#printHisEducation').click(function () {
+
+  var doc = new jsPDF();
+  var specialElementHandlers = {
+      '#print': function (element, renderer) {
+          return true;
+      }
+  };
+  doc.text(45,10,"SURANAREE UNIVERSITY OF TECHNOLOGY");
+  doc.setFontSize(12);
+  doc.text(70,18,"INFORMATION OF TECHNOLOGY");
+  doc.setFontSize(13);
+  doc.text(0,20,"___________________________________________________________________________________________________________");
+    doc.fromHTML("EDUCATION HISTORY"+$('#hisEdu').html()+"EXPERTISE"+$('#expert').html(), 15, 30, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('History Educations.pdf');
+});
+
+$('#printHisWork').click(function(){
+  var doc = new jsPDF();
+  var specialElementHandlers = {
+      '#print': function (element, renderer) {
+          return true;
+      }
+  };
+  doc.text(45,10,"SURANAREE UNIVERSITY OF TECHNOLOGY");
+  doc.setFontSize(12);
+  doc.text(70,18,"INFORMATION OF TECHNOLOGY");
+  doc.setFontSize(13);
+  doc.text(0,20,"___________________________________________________________________________________________________________");
+    doc.fromHTML("WORK HISTORY"+$('#hisWork').html()+"EXPERIENCE"+$('#exp').html(), 15, 30, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('History Work.pdf');
+});
+$('#printHisAcademicWork').click(function(){
+  var doc = new jsPDF();
+  var specialElementHandlers = {
+      '#print': function (element, renderer) {
+          return true;
+      }
+  };
+  doc.text(45,10,"SURANAREE UNIVERSITY OF TECHNOLOGY");
+  doc.setFontSize(12);
+  doc.text(70,18,"INFORMATION OF TECHNOLOGY");
+  doc.setFontSize(13);
+  doc.text(0,20,"___________________________________________________________________________________________________________");
+    doc.fromHTML("International journals are in the international database."+$('#inter_journal_in_database').html()+
+                  "International journals not in the international database."+$('#inter_journal_not_database').html()+
+                  "National Journal"+$('#nation_journal').html()+
+                  "International Conference"+$('#inter_conference').html()+
+                  "National Conference"+$('#nation_conference').html()+
+                  "International Award Portfolio"+$('#inter_work').html()+
+                  "National Award Portfolio"+$('#nation_work').html(), 15, 30, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('Acdemic Work.pdf');
+});
+
+$('#printAll').click(function(){
+  var doc = new jsPDF();
+  var specialElementHandlers = {
+      '#print': function (element, renderer) {
+          return true;
+      }
+  };
+  doc.text(45,10,"SURANAREE UNIVERSITY OF TECHNOLOGY");
+  doc.setFontSize(12);
+  doc.text(70,18,"INFORMATION OF TECHNOLOGY");
+  doc.setFontSize(13);
+  doc.text(0,20,"___________________________________________________________________________________________________________");
+    doc.fromHTML("EDUCATION HISTORY"+$('#hisEdu').html()+"EXPERTISE"+$('#expert').html()+
+                  "WORK HISTORY"+$('#hisWork').html()+"EXPERIENCE"+$('#exp').html()+
+                  "International journals are in the international database."+$('#inter_journal_in_database').html()+
+                  "International journals not in the international database."+$('#inter_journal_not_database').html()+
+                  "National Journal"+$('#nation_journal').html()+
+                  "International Conference"+$('#inter_conference').html()+
+                  "National Conference"+$('#nation_conference').html()+
+                  "International Award Portfolio"+$('#inter_work').html()+
+                  "National Award Portfolio"+$('#nation_work').html(), 15, 30, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('History and Working.pdf');
+});
+
 rootRefUser.on("child_added",snap => {
 
   var image = snap.child("image").val();
@@ -55,11 +150,12 @@ $('#list_teacher').on('click','.subject',function(){
   $('#list_subject').empty();
   var rootRefSubject = usersRef.child(id).child('subject');
   rootRefSubject.on("child_added",snap => {
+    var semester = snap.child("semester").val();
     var subject = snap.child("subject").val();
     var code = snap.child("code").val();
     var credit = snap.child("credit").val();
 
-      $('#list_subject').append("<tr><td>"+subject+"</td><td>"+code+"</td><td>"+credit+"</td></tr>");
+      $('#list_subject').append("<tr><td>"+semester+"</td><td>"+code+"</td><td>"+subject+"</td><td>"+credit+"</td></tr>");
 
   });
   $('#subjectModal').modal('show');
@@ -73,6 +169,13 @@ $('#list_teacher').on('click','.graduationCap',function(){
   $('#hisWork').empty();
   $('#exp').empty();
   $('#working').empty();
+  $('#inter_work').empty();
+  $('#nation_work').empty();
+  $('#inter_conference').empty();
+  $('#nation_conference').empty();
+  $('#inter_journal_in_database').empty();
+  $('#inter_journal_not_database').empty();
+  $('#nation_journal').empty();
 
   var rootRefEducation = usersRef.child(id).child('education').child('his_education');
   rootRefEducation.on("child_added",snap => {
@@ -147,19 +250,19 @@ $('#list_teacher').on('click','.graduationCap',function(){
 
     if(status == "checked"){
       if(type == "inter_work"){
-        $('#working').append("<li> ผลงานระดับนานาชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+        $('#inter_work').append("<li>"+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
       }else if(type == "nation_work"){
-        $('#working').append("<li> ผลงานระดับชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
+        $('#nation_work').append("<li>"+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
       }else if(type == "nation_journal"){
-        $('#working').append("<li> วารสารระดับชาติ - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        $('#nation_journal').append("<li>"+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
       }else if(type == "inter_journal_not_database"){
-        $('#working').append("<li> วารสารระดับนานาชาติที่ไม่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        $('#inter_journal_not_database').append("<li>"+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
       }else if(type == "inter_journal_in_database"){
-        $('#working').append("<li> วารสารระดับนานาชาติที่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
+        $('#inter_journal_in_database').append("<li>"+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
       }else if(type == "nation_conference"){
-        $('#working').append("<li> การประชุมระดับชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+        $('#nation_conference').append("<li>"+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
       }else if(type == "inter_conference"){
-        $('#working').append("<li> การประชุมระดับนานาชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
+        $('#inter_conference').append("<li>"+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
       }
 
   }
@@ -293,6 +396,13 @@ $('#list_admin').on('click','.info',function(){
   $('#expert').empty();
   $('#hisWork').empty();
   $('#exp').empty();
+  $('#inter_work').empty();
+  $('#nation_work').empty();
+  $('#inter_conference').empty();
+  $('#nation_conference').empty();
+  $('#inter_journal_in_database').empty();
+  $('#inter_journal_not_database').empty();
+  $('#nation_journal').empty();
 
   var rootRefEducation = usersRef.child(id).child('education').child('his_education');
   rootRefEducation.on("child_added",snap => {
@@ -344,44 +454,8 @@ $('#list_admin').on('click','.info',function(){
 
     var rootRefAcademicWork = usersRef.child(id).child('academic_work').child('portfolio');
     rootRefAcademicWork.on("child_added",snap => {
-      var name_award = snap.child("name_award").val();
-      var name_work = snap.child("name_work").val();
-      var detail = snap.child("detail").val();
-      var department = snap.child("department").val();
-      var date = snap.child("date").val();
-      var code_research = snap.child("code_research").val();
-      var country = snap.child("country").val();
-      var date_finish = snap.child("date_finish").val();
-      var date_start = snap.child("date_start").val();
-      var location = snap.child("location").val();
-      var name = snap.child("name").val();
-      var name_eng = snap.child("name_eng").val();
-      var name_thai = snap.child("name_thai").val();
-      var type_article = snap.child("type_article").val();
-      var year = snap.child("year").val();
-      var article = snap.child("article").val();
-      var no = snap.child("no").val();
-      var status_author = snap.child("status_author").val();
-      var type_journal = snap.child("type_journal").val();
-      var status = snap.child("status").val();
-      var type = snap.child("type").val();
 
       if(status == "checked"){
-        if(type == "inter_work"){
-          $('#working').append("<li> ผลงานระดับนานาชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
-        }else if(type == "nation_work"){
-          $('#working').append("<li> ผลงานระดับชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
-        }else if(type == "nation_journal"){
-          $('#working').append("<li> วารสารระดับชาติ - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
-        }else if(type == "inter_journal_not_database"){
-          $('#working').append("<li> วารสารระดับนานาชาติที่ไม่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
-        }else if(type == "inter_journal_in_database"){
-          $('#working').append("<li> วารสารระดับนานาชาติที่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
-        }else if(type == "nation_conference"){
-          $('#working').append("<li> การประชุมระดับชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
-        }else if(type == "inter_conference"){
-          $('#working').append("<li> การประชุมระดับนานาชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
-        }
 
     }
     });
@@ -428,6 +502,13 @@ $('#list_ta').on('click','.info',function(){
   $('#expert').empty();
   $('#hisWork').empty();
   $('#exp').empty();
+  $('#inter_work').empty();
+  $('#nation_work').empty();
+  $('#inter_conference').empty();
+  $('#nation_conference').empty();
+  $('#inter_journal_in_database').empty();
+  $('#inter_journal_not_database').empty();
+  $('#nation_journal').empty();
 
   var rootRefEducation = usersRef.child(id).child('education').child('his_education');
   rootRefEducation.on("child_added",snap => {
@@ -478,46 +559,12 @@ $('#list_ta').on('click','.info',function(){
 
     var rootRefAcademicWork = usersRef.child(id).child('academic_work').child('portfolio');
     rootRefAcademicWork.on("child_added",snap => {
-      var name_award = snap.child("name_award").val();
-      var name_work = snap.child("name_work").val();
-      var detail = snap.child("detail").val();
-      var department = snap.child("department").val();
-      var date = snap.child("date").val();
-      var code_research = snap.child("code_research").val();
-      var country = snap.child("country").val();
-      var date_finish = snap.child("date_finish").val();
-      var date_start = snap.child("date_start").val();
-      var location = snap.child("location").val();
-      var name = snap.child("name").val();
-      var name_eng = snap.child("name_eng").val();
-      var name_thai = snap.child("name_thai").val();
-      var type_article = snap.child("type_article").val();
-      var year = snap.child("year").val();
-      var article = snap.child("article").val();
-      var no = snap.child("no").val();
-      var status_author = snap.child("status_author").val();
-      var type_journal = snap.child("type_journal").val();
-      var status = snap.child("status").val();
-      var type = snap.child("type").val();
+
 
       if(status == "checked"){
-        if(type == "inter_work"){
-          $('#working').append("<li> ผลงานระดับนานาชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
-        }else if(type == "nation_work"){
-          $('#working').append("<li> ผลงานระดับชาติ - "+name_award+" , "+name_work+" , "+detail+" , "+department+" , "+date+"</li>");
-        }else if(type == "nation_journal"){
-          $('#working').append("<li> วารสารระดับชาติ - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
-        }else if(type == "inter_journal_not_database"){
-          $('#working').append("<li> วารสารระดับนานาชาติที่ไม่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
-        }else if(type == "inter_journal_in_database"){
-          $('#working').append("<li> วารสารระดับนานาชาติที่อยู่ในฐานข้อมูลสากล - "+article+" , "+status_author+" , "+code_research+" , "+name+" , "+type_journal+", "+year+", "+no+"</li>");
-        }else if(type == "nation_conference"){
-          $('#working').append("<li> การประชุมระดับชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
-        }else if(type == "inter_conference"){
-          $('#working').append("<li> การประชุมระดับนานาชาติ - "+type_article+" , "+name_thai+" , "+name_eng+" , "+year+" , "+code_research+" , "+name+" , "+date_start+" - "+date_finish+", "+location+", "+country+"</li>");
-        }
 
-    }
+     }
+
     });
 
 

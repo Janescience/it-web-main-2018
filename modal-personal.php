@@ -5,7 +5,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" >Office Hour</h4>
+        <h4 class="modal-title" >_เวลาที่สามารถเข้าพบได้</h4>
       </div>
       <div class="modal-body">
         <div class="card-block">
@@ -34,7 +34,7 @@
       </div>
       </div>
       <div class="modal-footer">
-        <button id="btClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button id="btClose" class="btn btn-danger" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="messagePassModal">Location</h4>
+        <h4 class="modal-title" id="messagePassModal">ตำแหน่งปัจจุบัน</h4>
       </div>
       <div class="modal-body">
         <center>
@@ -58,7 +58,7 @@
           </center>
       </div>
       <div class="modal-footer">
-        <button id="btClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button id="btClose" class="btn btn-danger" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>
@@ -72,55 +72,77 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="nameTeacherHeader"></h4>
+        <h4 class="modal-title" id="nameTeacherHeader">ประวัติและผลงาน <button id="printAll" class="btn btn-info btn-lg" ><i class="fa fa-print"></i></button></h4>
       </div>
       <div class="modal-body">
 
           <ul class="nav nav-tabs" role="tablist">
-            <li  class="nav-item active"><a class="nav-link" href="#personalexp"   data-toggle="tab"><i class="fa fa-graduation-cap" aria-hidden="true"></i> ประวัติการศึกษา</a></li>
-            <li  class="nav-item"><a class="nav-link" href="#worpexp"   data-toggle="tab"><i class="fa fa-briefcase" aria-hidden="true"></i> ประวัติการทำงาน</a></li>
-            <li  class="nav-item"><a class="nav-link" href="#papers"  r data-toggle="tab"><i class="fa fa-trophy" aria-hidden="true"></i> ผลงานวิชาการ</a></li>
+            <li  class="nav-item "><a class="nav-link active" href="#personalexp"   data-toggle="tab"> <h5>ประวัติการศึกษา</h5></a></li>
+            <li  class="nav-item"><a class="nav-link" href="#worpexp"   data-toggle="tab"><h5>ประวัติการทำงาน</h5></a></li>
+            <li  class="nav-item"><a class="nav-link" href="#papers"  r data-toggle="tab"><h5>ผลงานวิชาการ</h5></a></li>
           </ul>
           <div class="tab-content" style="text-align:left;">
-            <div  class="container tab-pane active" id="personalexp">
-            <p> </p>
-            <p><strong><u>ประวัติการศึกษา</u></strong></p>
+            <div  class="container tab-pane active" id="personalexp"><br>
+              <button id="printHisEducation" class="btn btn-ligth btn-md" ><i class="fa fa-print"></i></button>
+            <p><strong><u><h5>ประวัติการศึกษา</h5></u></strong></p>
             <ul id="hisEdu">
 
             </ul>
-            <p><strong><u>ความเชื่ยวชาญ</u></strong></p>
+            <p><strong><u><h5>ความเชื่ยวชาญ</h5></u></strong></p>
             <ul id="expert">
 
             </ul>
+
             </div>
-            <div  class="container tab-pane" id="worpexp">
-              <p>&nbsp;</p>
-              <p><strong><u>ประวัติการทำงาน</u></strong></p>
+            <div  class="container tab-pane" id="worpexp"><br>
+              <button id="printHisWork" class="btn btn-ligth btn-md " ><i class="fa fa-print"></i></button>
+
+              <p><strong><u><h5>ประวัติการทำงาน</h5></u></strong></p>
               <ul id="hisWork">
 
               </ul>
-              <p><strong><u>ประสบการณ์ด้านต่างๆ</u></strong></p>
+              <p><strong><u><h5>ประสบการณ์ด้านต่างๆ</h5></u></strong></p>
               <ul id="exp">
 
               </ul>
             </div>
-            <div class="container tab-pane" id="papers">
-              <p>&nbsp;</p>
-              <p><strong><u>ผลงานวิชาการ</u></strong></p>
-              <ul id="working">
+            <div class="container tab-pane" id="papers"><br>
+              <button id="printHisAcademicWork" class="btn btn-ligth btn-md"><i class="fa fa-print"></i></button>
+
+              <p><strong><u><h5>ผลงานวิชาการ</h5></u></strong></p>
+              <p><strong><h6>วารสารระดับชาติที่อยู่ในฐานข้อมูลสากล</h6></strong></p>
+              <ul id="inter_journal_in_database">
 
               </ul>
-              <p><strong><u>งานวิจัย</u></strong></p>
-              <ul id="research">
+              <p><strong><h6>วารสารระดับชาติที่ไม่อยู่ในฐานข้อมูลสากล</h6></strong></p>
+              <ul id="inter_journal_not_database">
 
               </ul>
+              <p><strong><h6>วารสารระดับชาติ</h6></strong></p>
+              <ul id="nation_journal">
 
+              </ul>
+              <p><strong><h6>การประชุมระดับนานาชาติ</h6></strong></p>
+              <ul id="inter_conference">
 
+              </ul>
+              <p><strong><h6>การประชุมระดับชาติ</h6></strong></p>
+              <ul id="nation_conference">
+
+              </ul>
+              <p><strong><h6>ผลงานที่ได้รับรางวัลระดับนานาชาติ</h6></strong></p>
+              <ul id="inter_work">
+              </ul>
+              <p><strong><h6>ผลงานที่ได้รับรางวัลระดับชาติ</h6></strong></p>
+              <ul id="nation_work">
+
+              </ul>
             </div>
+            <div id="print"></div>
       </div>
     </div>
       <div class="modal-footer">
-        <button id="btClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button id="btClose" class="btn btn-danger" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>
@@ -134,15 +156,16 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="messagePassModal">Location</h4>
+        <h4 class="modal-title" id="messagePassModal">รายวิชาที่สอน</h4>
       </div>
       <div class="modal-body">
-        <table>
+        <table class="table">
           <thead>
             <tr>
-              <th>ชื่อวิชา</th>
-              <th>รหัสวิชา</th>
-              <th>หน่วยกิต</th>
+              <th class="text-center">ภาคการศึกษา</th>
+              <th class="text-center">รหัสวิชา</th>
+              <th class="text-center">ชื่อวิชา</th>
+              <th class="text-center">หน่วยกิต</th>
               <tr>
           </thead>
           <tbody id="list_subject">
@@ -150,7 +173,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button id="btClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button id="btClose" class="btn btn-danger" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>
