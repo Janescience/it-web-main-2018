@@ -275,6 +275,7 @@ $('#list_teacher').on('click','.graduationCap',function(){
 $('#list_teacher').on('click','.googleMap',function(){
 
   var id = $(this).closest('p').attr('id');
+
   var dblatitude = firebase.database().ref('users').child(id).child('latitude');
   dblatitude.on('value',snap =>{
     latitude=snap.val();
@@ -283,10 +284,18 @@ $('#list_teacher').on('click','.googleMap',function(){
   dblongitude.on('value',snap =>{
     longitude=snap.val();
   });
+  var dbTimeUpdate = firebase.database().ref('users').child(id).child('show_map_time');
+  dbTimeUpdate.on('value',snap =>{
+    $('#mapTimeUpdateNotShow').text("อัพเดตล่าสุด : "+snap.val());
+    $('#mapTimeUpdateShow').text("อัพเดตล่าสุด : "+snap.val());
+  });
 
-
-$('#mapModal').modal('show');
-showPosition();
+if(latitude !="" && longitude != ""){
+  $('#mapModal').modal('show');
+  showPosition();
+}else{
+  $('#notShowModal').modal('show');
+}
 
 });
 
