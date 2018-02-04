@@ -55,6 +55,8 @@
             <div>
               <div id="map" style="width: 600px; height: 400px; "></div>
             </div>
+            <br>
+            <p class="text-muted " id="mapTimeUpdateShow"></p>
           </center>
       </div>
       <div class="modal-footer">
@@ -65,6 +67,34 @@
 </div>
 
 <!--===========================================================================================================-->
+
+<!--==================================== Not Show Google Map ====================================================-->
+
+<div class="modal fade" id="notShowModal" role="dialog" aria-labelledby="Message" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" >การแจ้งเตือน</h4>
+      </div>
+      <div class="modal-body">
+        <center>
+            <h6>ไม่สามารถดูตำแหน่งปัจจุบันได้ เนื่องจากคณาจารย์ท่านนี้ได้ปิดระบบการแสดงตำแหน่งปัจจุบัน</h6>
+            <h1><i class="fa fa-eye-slash"></i></h1>
+            <br><br><br>
+            <p class="text-muted " id="mapTimeUpdateNotShow"></p>
+
+          </center>
+
+      </div>
+      <div class="modal-footer">
+        <button id="btClose" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--===========================================================================================================-->
+
 
 <!--====================================  History and Work ====================================================-->
 
